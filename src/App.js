@@ -1,5 +1,8 @@
+import React from "react";
+import User from "./User";
+
 function App() {
-  return <div className="App">Hello</div>;
+  return <User />;
 }
 
 export default App;

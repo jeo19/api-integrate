@@ -22,8 +22,19 @@ function User() {
     };
     fetchUsers();
   }, []);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>occurring error!</div>;
+  if (!users) return null;
 
-  return <div>Hello React!</div>;
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id}>
+          {user.username}({user.name})
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export default User;
