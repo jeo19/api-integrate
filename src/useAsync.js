@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -41,7 +41,11 @@ function useAsync(callback, deps = []) {
       dispatch({ type: "ERROR", error: e });
     }
   };
-  return <div>Hello React!</div>;
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line
+  }, deps);
+  return [state, fetchData];
 }
 
 export default useAsync;
