@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
 const initialState = {
   users: {
@@ -71,6 +71,8 @@ function usersReducer(state, action) {
 const UsersStateContext = createContext(null);
 const UsersDispatchContext = createContext(null);
 
+//Wrapping the provider tag for use the state and dispatch values with global
+
 export function UsersProvider({ children }) {
   const [state, dispatch] = useReducer(usersReducer, initialState);
   return (
@@ -80,6 +82,22 @@ export function UsersProvider({ children }) {
       </UsersDispatchContext.Provider>
     </UsersStateContext.Provider>
   );
+}
+// Declared the custom hook for easy use the State value
+export function useUsersState() {
+  const state = useContext(UsersStateContext);
+  if (!state) {
+    throw new Error(`Can not find UsersProvider`);
+  }
+  return state;
+}
+//Declared the custom hook for easy use the dispatch function
+export function useUsersDispatch() {
+  const dispatch = useContext(UsersDispatchContext);
+  if (!dispatch) {
+    throw new Error("Can not find UsersProvider");
+  }
+  return dispatch;
 }
 
 function UsersContext() {
