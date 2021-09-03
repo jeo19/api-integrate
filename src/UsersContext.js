@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useReducer } from "react";
 
 const initialState = {
   users: {
@@ -66,6 +66,20 @@ function usersReducer(state, action) {
     default:
       throw new Error(`Unhandled action type:${action.type}`);
   }
+}
+
+const UsersStateContext = createContext(null);
+const UsersDispatchContext = createContext(null);
+
+export function UsersProvider({ children }) {
+  const [state, dispatch] = useReducer(usersReducer, initialState);
+  return (
+    <UsersStateContext.Provider value={state}>
+      <UsersDispatchContext.Provider value={dispatch}>
+        {children}
+      </UsersDispatchContext.Provider>
+    </UsersStateContext.Provider>
+  );
 }
 
 function UsersContext() {
