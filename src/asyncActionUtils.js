@@ -1,4 +1,4 @@
-export default function createAsyncDispatcher(type, promiseFn) {
+export function createAsyncDispatcher(type, promiseFn) {
   const SUCCESS = `${type}_SUCCESS`;
   const ERROR = `${type}_ERROR`;
   async function actionHandler(dispatch, ...rest) {
