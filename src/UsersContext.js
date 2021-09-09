@@ -14,24 +14,6 @@ const initialState = {
     error: null,
   },
 };
-//State when loading
-const loadingState = {
-  loading: true,
-  data: null,
-  error: null,
-};
-//State function when success
-const success = (data) => ({
-  loading: false,
-  data,
-  error: null,
-});
-//State function when error
-const error = (error) => ({
-  loading: false,
-  data: null,
-  error: error,
-});
 
 function usersReducer(state, action) {
   switch (action.type) {
