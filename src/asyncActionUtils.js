@@ -64,4 +64,5 @@ export function createAsyncHandler(type, key) {
         return state;
     }
   }
+  return handler;
 }
